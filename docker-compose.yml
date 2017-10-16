@@ -12,6 +12,9 @@ services:
       - MONGO_URL=mongodb://mongo:27017/rocketchat
       - MONGO_OPLOG_URL=mongodb://mongo:27017/local
       - MAIL_URL=smtp://smtp.email
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASS=supersecret
+      - ADMIN_EMAIL=admin@example.com
 #       - HTTP_PROXY=http://proxy.domain.com
 #       - HTTPS_PROXY=http://proxy.domain.com
     depends_on:
@@ -46,9 +49,10 @@ services:
     restart: unless-stopped
     environment:
       - ROCKETCHAT_URL=rocketchat:3000
-      - ROCKETCHAT_ROOM=GENERAL
+      - ROCKETCHAT_ROOM=''
+      - LISTEN_ON_ALL_PUBLIC=true
       - ROCKETCHAT_USER=bot
-      - ROCKETCHAT_PASSWORD=botpassword
+      - ROCKETCHAT_PASSWORD=bot
       - BOT_NAME=bot
   # you can add more scripts as you'd like here, they need to be installable by npm
       - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics
